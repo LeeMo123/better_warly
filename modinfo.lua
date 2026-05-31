@@ -33,7 +33,7 @@ Gains ​1.2× damage multiplier when wielding freshness-based weapons (e.g. Ham
 ]]
 
 author = "去码头整点薯条, 我家小虎虎"
-version = "2026.4.19"
+version = "2026.5.30"
 
 forumthread = ""
 
