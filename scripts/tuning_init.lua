@@ -15,6 +15,8 @@ TUNING.WARLY_CHANGE = {
     is_spice_food_tweaks = GetModConfigData("is_spice_food_tweaks"),
     -- 羊角掉落额外概率
     warly_extra_lightninggoathorn = GetModConfigData("warly_extra_lightninggoathorn"),
+    -- 三格便携烹饪锅
+    -- tri_slot_portable_cook_pot = GetModConfigData("tri_slot_portable_cook_pot"),
 
     -- buff时间之类的：
     BUFF_STRONG_FOR_HEAVY = TUNING.TOTAL_DAY_TIME * 5/8,  --重物不减速

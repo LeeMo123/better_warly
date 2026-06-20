@@ -26,17 +26,13 @@ local function Extraloot(inst, data)
     local target = data.victim
     if target and target.components.lootdropper then
         local ram = math.random()
-        if target.prefab == "lightninggoat" and TUNING.WARLY_CHANGE.warly_extra_lightninggoathorn then
-            -- print("ram:", ram)
-            if ram <= 0.6 then
-                if target == inst.components.combat.target then
-                    -- print("target:", target)
-                    target.components.lootdropper:SpawnLootPrefab("lightninggoathorn")
-                end
-                return
-            end
+        -- 击杀概率性掉落伏特羊角
+        if ram <= 0.5 and target.prefab == "lightninggoat" and TUNING.WARLY_CHANGE.warly_extra_lightninggoathorn and target == inst.components.combat.target then
+            target.components.lootdropper:SpawnLootPrefab("lightninggoathorn")
+            return
         end
 
+        -- 击杀概率性额外掉落战利品
         local loots = target.components.lootdropper:GenerateLoot()
         local container = inst.components.inventory or inst.components.container
         for i, loot in ipairs(loots) do

@@ -2,6 +2,9 @@
 local function MakeSpice(name)
     local assets =
     {
+        Asset("ANIM", "anim/ui_cookpot_1x3.zip"),       -- UI 1x3  -- 借一下这里载入一下
+        Asset("ANIM", "anim/ui_cookpot_1x5.zip"),       -- UI 1x5  -- 借一下这里载入一下
+
         Asset("ANIM", "anim/warly_spices.zip"),
         Asset("IMAGE", "images/inventoryimages/"..name..".tex"),
         Asset("ATLAS", "images/inventoryimages/"..name..".xml"),

@@ -46,6 +46,7 @@ warly_foods.nightmarepie.oneatenfn = function(inst, eater)
     if eater:HasTag("player") then
         _oneatenfn(inst, eater)
     else
+        -- 非玩家生物触发减伤效果
         if eater.components.health ~= nil then
             eater.components.health:DoDelta(-300 - math.random(1, 300))
         end
@@ -77,5 +78,12 @@ warly_foods.glowberrymousse.oneatenfn = function(inst, eater)
         else
             light.components.spell:StartSpell()
         end
+    end
+end
+
+-- 怪物鞑靼
+warly_foods.monstertartare.oneatenfn = function(inst, eater)
+    if eater.components.werebeast ~= nil then
+        eater.components.werebeast:TriggerDelta(4)
     end
 end

@@ -13,6 +13,7 @@
 --     nummaxguarou_table = { 2, 2, 2, 2, 2, 1, 1 ,2 ,2, 2}
 -- end
 
+-- 移除物品
 local function removeItem(item,num)
 	if item.components.stackable then
 		item.components.stackable:Get(num):Remove()
@@ -20,6 +21,8 @@ local function removeItem(item,num)
 		item:Remove()
 	end
 end
+
+-- 添加一个用于发射物品的函数
 local DEGREES = math.pi/180
 local function launchitem(item, angle)
     local speed = math.random() * 4 + 2
@@ -27,6 +30,14 @@ local function launchitem(item, angle)
     item.Physics:SetVel(speed * math.cos(angle), math.random() * 2 + 8, speed * math.sin(angle))
 end
 
+-- 添加一个用于更新伤害的函数
+local function UpdateDamage(inst)
+    if inst.components.perishable and inst.components.weapon then
+        local dmg = TUNING.HAMBAT_DAMAGE * inst.components.perishable:GetPercent()
+        dmg = Remap(dmg, 0, TUNING.HAMBAT_DAMAGE, TUNING.HAMBAT_MIN_DAMAGE_MODIFIER*TUNING.HAMBAT_DAMAGE, TUNING.HAMBAT_DAMAGE)
+        inst.components.weapon:SetDamage(dmg)
+    end
+end
 
 local warly_actions =
 {
@@ -164,6 +175,28 @@ local warly_actions =
 		},
 		canqueuer = "allclick",--兼容排队论
     },
+    {
+        id = "REMEAT", --修补肉块  修复大肉棒
+        str = STRINGS.ACTIONS.APPLYCONSTRUCTION.REPAIR,
+        fn = function(act)
+            if act.doer ~= nil and act.invobject:HasTag("remeat") and act.target.prefab == "hambat" then
+                -- 修复
+                act.target.components.perishable:SetPercent(math.min(1, act.target.components.perishable:GetPercent() + 0.5))
+                act.doer.SoundEmitter:PlaySound("dontstarve/HUD/repair_clothing")
+                -- 移除物品
+                removeItem(act.invobject)
+                -- 更新伤害
+                UpdateDamage(act.target)
+            end
+            return true
+        end,
+        state = "dolongaction",
+        actiondata = {
+            priority = -10, --99999,
+            mount_valid = true,
+        },
+		canqueuer = "allclick",--兼容排队论
+    },
 }
 
 --动作与组件绑定
@@ -190,6 +223,12 @@ local component_actions  = {
                 testfn = function(inst, doer, target, actions, right)
                     return inst:HasTag("spicematerials") and doer:HasTag('masterchef') and
                         target.prefab == "portableblender"
+                end,
+            },
+            {
+                action = "REMEAT", --修补肉块 修复大肉棒
+                testfn = function(inst, doer, target, actions, right)
+                    return inst:HasTag("remeat") and target.prefab == "hambat"
                 end,
             },
         }

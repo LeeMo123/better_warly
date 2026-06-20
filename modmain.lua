@@ -10,7 +10,9 @@ PrefabFiles = {
 
     "warly_seedpacket",     -- 种子包
 
-    "minimap_icon"          -- 小地图图标
+    "minimap_icon",          -- 小地图图标
+
+    "remeat",               -- 修补肉块
 }
 
 -- 模块导入
@@ -31,7 +33,7 @@ modimport("scripts/prefabs_init/warly")           -- 沃利调整
 modimport("scripts/prefabs_init/portableblender") -- 研磨器
 modimport("scripts/prefabs_init/portablecookpot") -- 烹饪锅
 modimport("scripts/prefabs_init/portablespicer")  -- 便携香料站
--- modimport("scripts/prefabs_init/pigking")         -- 给猪王怪物料理 获得猪王的种子袋
+-- modimport("scripts/prefabs_init/pigking")         -- 给猪王monstertartare 获得猪王的种子袋
 modimport("scripts/prefabs_init/foodbuffs")       -- 料理buff
 modimport("scripts/prefabs_init/foods_spice_salt")-- 盐调料食物
 

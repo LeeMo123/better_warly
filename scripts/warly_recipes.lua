@@ -30,26 +30,23 @@ AddRecipe2("spice_shell",
 
 -- 黄油
 AddRecipe2(
-    "wanderingtradershop_butter",
+    "butter",
     {
-        Ingredient("beefalowool", 3),
+        Ingredient("goatmilk", 2),
     },
-    TECH.LOST,
+    TECH.NONE,
     {
-        limitedamount = true, 
-        nounlock = true, 
-        actionstr="WANDERINGTRADERSHOP", 
-        sg_state="give",
-        product = "butter",
+        sg_state="dolongaction",
         no_deconstruction = true,
         builder_tag = "masterchef",
         image = "butter.tex",
         description = "wanderingtradershop_butter",
         numtogive = 1,
-    }
+    },
+    {"CHARACTER"}
 )
 
--- 黄油
+-- 种子包
 AddRecipe2(
     "wanderingtradershop_warly_seedpacket",
     {
@@ -68,4 +65,18 @@ AddRecipe2(
         description = "yotc_seedpacket",
         numtogive = 1,
     }
+)
+
+-- 修补肉块
+AddRecipe2(
+    "remeat",
+    {
+        Ingredient("saltrock", 2),
+        Ingredient("meat", 1)
+    },
+    TECH.SCIENCE_TWO,
+    {        
+        atlas= "images/inventoryimages/remeat.xml",
+    },
+    {"WEAPONS", "REFINE"}
 )

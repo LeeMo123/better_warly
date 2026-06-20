@@ -33,7 +33,7 @@ Gains ​1.2× damage multiplier when wielding freshness-based weapons (e.g. Ham
 ]]
 
 author = "去码头整点薯条, 我家小虎虎"
-version = "2026.5.30"
+version = "2026.6.21"
 
 forumthread = ""
 
@@ -184,16 +184,16 @@ configuration_options =
         default = true
     },
     -- {
-    --     name = "warly_action",
-    --     label = L and "more actions" or "更多动作",
-    --     hover = L and "1.warly can use the razor to split meat into smaller pieces. 2.seasoning by using Seasoning Station to get more spices." or
-    --         "1.沃利可以使用剃刀将肉分割成更多的小肉，2.使用香料站可研磨获得更多香料",
+    --     name = "tri_slot_portable_cook_pot",
+    --     label = L and "Portable Cook Pot Change" or "便携烹饪锅调整",
+    --     hover = L and "The portable cook pot now has only 3 ingredient slots. Some Warly-exclusive recipes have been adjusted to match this change." or
+    --         "便携烹饪锅现在只有三格料理格子了，同时修改部分大厨特色菜的配方以匹配该改动。",
     --     options =
     --     {
     --         { description = L and "Enable" or "开启", data = true },
     --         { description = L and "Disable" or "关闭", data = false }
     --     },
-    --     default = true
+    --     default = false
     -- },
     {
         name = "food_damage_mult",

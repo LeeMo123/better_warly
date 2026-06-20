@@ -22,7 +22,7 @@ local SPICES =
     -- SPICE_SALT = { }
 }
 
-local function GenerateSpicedFoods(foods)
+local function _GenerateSpicedFoods(foods)
     for foodname, fooddata in pairs(foods) do
         for spicenameupper, spicedata in pairs(SPICES) do
             local newdata = shallowcopy(fooddata)
@@ -85,8 +85,8 @@ local function GenerateSpicedFoods(foods)
     end
 end
 
-GenerateSpicedFoods(require("preparedfoods"))
-GenerateSpicedFoods(require("preparedfoods_warly"))
+_GenerateSpicedFoods(require("preparedfoods"))
+_GenerateSpicedFoods(require("preparedfoods_warly"))
 
 for _, recipe in pairs(spicedfoods) do
     AddCookerRecipe("portablespicer", recipe)
