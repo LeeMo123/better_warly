@@ -19,29 +19,30 @@
 
 --     params.portablecookpot.widget.buttoninfo.position = Vector3(0, -140 + bg_y, 0)
 -- end
+if TUNING.WARLY_CHANGE.fif_slot_portable_cook_pot then
+    local containers = require("containers")
+    local params = containers.params
 
-local containers = require("containers")
-local params = containers.params
+    params.portablecookpot = deepcopy(params.cookpot)
 
-params.portablecookpot = deepcopy(params.cookpot)
+    local bg_y = 10
+    params.portablecookpot.widget.slotpos =         
+    {
+        Vector3(0, 108+30 + bg_y, 0),
+        Vector3(0, 36+30 + bg_y, 0),
+        Vector3(0, -36+30 + bg_y, 0),
+        Vector3(0, -108+30 + bg_y, 0),
+        Vector3(0, -180+30 + bg_y, 0),
+    }
 
-local bg_y = 10
-params.portablecookpot.widget.slotpos =         
-{
-    Vector3(0, 108+30 + bg_y, 0),
-    Vector3(0, 36+30 + bg_y, 0),
-    Vector3(0, -36+30 + bg_y, 0),
-    Vector3(0, -108+30 + bg_y, 0),
-    Vector3(0, -180+30 + bg_y, 0),
-}
+    params.portablecookpot.widget.animbank = "ui_cookpot_1x5"
+    params.portablecookpot.widget.animbuild = "ui_cookpot_1x5"
 
-params.portablecookpot.widget.animbank = "ui_cookpot_1x5"
-params.portablecookpot.widget.animbuild = "ui_cookpot_1x5"
+    params.portablecookpot.widget.buttoninfo.position = Vector3(0, -210 + bg_y, 0)
 
-params.portablecookpot.widget.buttoninfo.position = Vector3(0, -210 + bg_y, 0)
-
-function params.portablecookpot.widget.buttoninfo.validfn(inst)
-    return inst.replica.container ~= nil and #inst.replica.container:GetItems() >= 4
+    function params.portablecookpot.widget.buttoninfo.validfn(inst)
+        return inst.replica.container ~= nil and #inst.replica.container:GetItems() >= 4
+    end
 end
 
 -- 且具备保鲜能力与冰箱相同

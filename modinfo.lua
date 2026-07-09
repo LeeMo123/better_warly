@@ -33,7 +33,7 @@ Gains ​1.2× damage multiplier when wielding freshness-based weapons (e.g. Ham
 ]]
 
 author = "去码头整点薯条, 我家小虎虎"
-version = "2026.6.21"
+version = "2026.7.10"
 
 forumthread = ""
 
@@ -101,6 +101,7 @@ configuration_options =
             { description = L and "20 day" or "20天", data = 20 },
             { description = L and "10 day" or "10天", data = 10 },
             { description = L and "5 day" or "5天", data = 5 },
+            { description = L and "3 day" or "3天", data = 5 },
             { description = L and "2 day[Vanilla]" or "2天[默认]", data = 2 },
             { description = L and "1 day" or "1天", data = 1 },
             { description = L and "0.5 day" or "0.5天", data = 0.5 },
@@ -183,18 +184,18 @@ configuration_options =
         },
         default = true
     },
-    -- {
-    --     name = "tri_slot_portable_cook_pot",
-    --     label = L and "Portable Cook Pot Change" or "便携烹饪锅调整",
-    --     hover = L and "The portable cook pot now has only 3 ingredient slots. Some Warly-exclusive recipes have been adjusted to match this change." or
-    --         "便携烹饪锅现在只有三格料理格子了，同时修改部分大厨特色菜的配方以匹配该改动。",
-    --     options =
-    --     {
-    --         { description = L and "Enable" or "开启", data = true },
-    --         { description = L and "Disable" or "关闭", data = false }
-    --     },
-    --     default = false
-    -- },
+    {
+        name = "fif_slot_portable_cook_pot",
+        label = L and "5 Slots Portable Cook Pot" or "5格便携烹饪锅调整",
+        hover = L and "The portable cook pot now has 5 ingredient slots." or
+            "便携烹饪锅现在只有5格料理格子。",
+        options =
+        {
+            { description = L and "Enable" or "开启", data = true },
+            { description = L and "Disable" or "关闭", data = false }
+        },
+        default = false
+    },
     {
         name = "food_damage_mult",
         label = L and "“food” damage mult" or "高效“食”战",
