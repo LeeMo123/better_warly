@@ -26,29 +26,18 @@ TUNING.WARLY_CHANGE = {
     -- 香料站研磨香料buff应用最大距离
     PORTABLESPICER_BUFF_RANGE = 6,
 
-    -- 大肉
-    meats_table = { "meat", "cookedmeat", "meat_dried", "drumstick", "drumstick_cooked", "fishmeat",
-    "fishmeat_cooked" },
-    
-    -- 小肉
-    smallmeat_table = { "smallmeat", "cookedsmallmeat", "smallmeat_dried", "smallmeat", "cookedsmallmeat",
-    "fishmeat_small", "fishmeat_small_cooked" },
-
-    nummaxguarou_table = { 2, 2, 2, 2, 2, 1, 1 }, -- 可以获得最多的小块肉的数量--移除预制物(预制物,数量)
-
+    ---------------------------------------------------------------
+    meats_table = {     
+        meat              = { "smallmeat", 2 },     -- 生大肉 -> 2小块肉
+        cookedmeat        = { "cookedsmallmeat", 2 }, -- 熟大肉 -> 2小块熟肉
+        meat_dried        = { "smallmeat_dried", 2 }, -- 肉干 -> 2小块肉干
+        drumstick         = { "smallmeat", 1 },     -- 鸡腿(生) -> 2小块肉
+        drumstick_cooked  = { "cookedsmallmeat", 1 }, -- 鸡腿(熟) -> 2小块熟肉
+        fishmeat          = { "fishmeat_small", 2 }, -- 鱼肉 -> 2小块鱼肉
+        fishmeat_cooked   = { "fishmeat_small_cooked", 2 }, -- 熟鱼肉 -> 2小块熟鱼肉
+        fishmeat_dried    = { "fishmeat_small_dried", 2 }, -- 鱼肉干 -> 2小块鱼肉干
+        trunk_summer      = { "meat", 2 },     -- 夏象鼻 -> 2生大肉
+        trunk_winter      = { "meat", 2 },     -- 冬象鼻 -> 2生大肉
+        trunk_cooked      = { "cookedmeat", 2 },-- 熟象鼻 -> 2熟大肉    
+    },
 }
-
-if GLOBAL.KnownModIndex:IsModEnabled("workshop-2039181790") then
-    local monster_meats_table = {"monstermeat", "cookedmonstermeat", "monstermeat_dried"}
-    local smallmonster_meats_table = {"monstersmallmeat", "cookedmonstersmallmeat", "monstersmallmeat_dried"}
-    
-    for _, monster_meat in pairs(monster_meats_table) do
-        table.insert(TUNING.WARLY_CHANGE.meats_table, monster_meat)
-    end
-
-    for _, monster_smallmeat in pairs(smallmonster_meats_table) do
-        table.insert(TUNING.WARLY_CHANGE.smallmeat_table, monster_smallmeat)
-    end
-
-    TUNING.WARLY_CHANGE.nummaxguarou_table = { 2, 2, 2, 2, 2, 1, 1 ,2 ,2, 2}
-end

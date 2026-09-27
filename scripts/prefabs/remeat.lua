@@ -34,7 +34,7 @@ local function fn(Sim)
 	
 	inst:AddComponent("edible")
     inst.components.edible.healthvalue = TUNING.SPOILED_HEALTH
-    inst.components.edible.hungervalue = TUNING.SPOILED_HUNGER
+    inst.components.edible.hungervalue = 10
 	-- inst.components.edible.foodtype = FOODTYPE.MEAT
 	inst.components.edible:SetOnEatenFn(oneaten)
 	

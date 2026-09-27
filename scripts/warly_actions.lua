@@ -85,28 +85,25 @@ local warly_actions =
         str = STRINGS.CHARACTERS.WARLY.DESCRIBE.DECIDUOUSTREE.CHOPPED:gsub("[！!]", ""),
         fn = function(act)
             if act.doer ~= nil and act.invobject ~= nil and act.doer:HasTag("masterchef") and act.invobject.prefab == "razor" then
-                if table.contains(TUNING.WARLY_CHANGE.meats_table, act.target.prefab) then
-                    for index, meat_name in pairs(TUNING.WARLY_CHANGE.meats_table) do
-                        -- 这里是为了获取一下目标的肉在表里的哪个位置
-                        if act.target.prefab == meat_name then
-                            removeItem(act.target)
-                            local x, y, z = act.doer.Transform:GetWorldPosition()
-                            local pos = Vector3(x, y, z)
-                            local SetMeatPerish = math.min(1, act.target.components.perishable:GetPercent() + 0.2)
-                            for i = 1, TUNING.WARLY_CHANGE.nummaxguarou_table[index] do
-                                local smallmeat = SpawnPrefab(TUNING.WARLY_CHANGE.smallmeat_table[index])
-                                smallmeat.components.perishable:SetPercent(SetMeatPerish)
-                                act.doer.components.inventory:GiveItem(smallmeat, nil, pos)
-                            end
-
-                            if math.random() >= 0.5 then
-                                local boneshard = SpawnPrefab("boneshard")
-                                act.doer.components.inventory:GiveItem(boneshard, nil, pos)
-                            end
-
-                            act.doer.SoundEmitter:PlaySound("dontstarve/common/plant")
-                        end
+                local info = TUNING.WARLY_CHANGE.meats_table[act.target.prefab]
+                if info and info[2] > 0 then
+                    local x, y, z = act.doer.Transform:GetWorldPosition()
+                    local pos = Vector3(x, y, z)
+                    local SetMeatPerish = math.min(1, act.target.components.perishable:GetPercent() + 0.2)
+        
+                    for i = 1, info[2] do
+                        local smallmeat = SpawnPrefab(info[1])
+                        smallmeat.components.perishable:SetPercent(SetMeatPerish)
+                        act.doer.components.inventory:GiveItem(smallmeat, nil, pos)
                     end
+        
+                    if math.random() > 0.5 then
+                        local boneshard = SpawnPrefab("boneshard")
+                        act.doer.components.inventory:GiveItem(boneshard, nil, pos)
+                    end
+        
+                    removeItem(act.target)
+                    act.doer.SoundEmitter:PlaySound("dontstarve/common/plant")
                 end
                 return true
             end
@@ -214,8 +211,7 @@ local component_actions  = {
             {
                 action = "GUAROU", --刮肉
                 testfn = function(inst, doer, target, actions, right)
-                    return inst.prefab == 'razor' and doer:HasTag('masterchef') and
-                        table.contains(TUNING.WARLY_CHANGE.meats_table, target.prefab)
+                    return inst.prefab == 'razor' and doer:HasTag('masterchef') and TUNING.WARLY_CHANGE.meats_table[target.prefab]
                 end,
             },
             {

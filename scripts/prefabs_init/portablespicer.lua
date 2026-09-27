@@ -70,6 +70,18 @@ local function applyspicebuff(spice, player)
     end
 end
 
+local function Getitems(inst, items)
+    -- 提取所有 prefab 名
+    local prefab_names = {}
+    for _, item in ipairs(items) do
+        if item and item:IsValid() then
+            table.insert(prefab_names, item.prefab)
+            item:Remove()
+        end
+    end
+    return prefab_names
+end
+
 -- 
 local function onclose(inst, doer)
     if not inst:HasTag("burnt") then
@@ -78,8 +90,7 @@ local function onclose(inst, doer)
         inst.SoundEmitter:PlaySound("dontstarve/common/together/portable/spicer/lid_close")
 
         local container = inst.components.container
-        local items = container:GetAllItems()
-        container:RemoveAllItems()
+        local items = Getitems(inst, container:GetAllItems())
         if #items > 0 then
             local itemmun = 1
 
@@ -96,12 +107,11 @@ local function onclose(inst, doer)
                 local player_num = 0
                 for i, v in pairs(players) do
                     if v and v:IsValid() and player_num <= 3 then
-                        applyspicebuff(items[itemmun].prefab, v)
+                        applyspicebuff(items[itemmun], v)
                         player_num = player_num + 1                
                     end
                 end
 
-                -- items[itemmun]:Remove()
                 itemmun = itemmun + 1
                 
                 inst.SoundEmitter:PlaySound("dontstarve/common/together/portable/spicer/cooking_pst")

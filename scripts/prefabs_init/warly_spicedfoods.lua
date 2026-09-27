@@ -55,14 +55,6 @@ local function _GenerateSpicedFoods(foods)
                     newdata.temperatureduration = math.max(newdata.temperatureduration, TUNING.FOOD_TEMP_LONG)
                     newdata.nochill = true
                 end
-            -- elseif spicename == "spice_salt" then
-            --     print("测试1")
-            --     if newdata.perishtime then
-            --         print("data name:", newdata.name)
-            --         print("data perishtime:", newdata.perishtime)
-            --         newdata.perishtime = newdata.perishtime * 1.5
-            --         print("data perishtime:", newdata.perishtime)
-            --     end
             end
 
             if spicedata.prefabs ~= nil then

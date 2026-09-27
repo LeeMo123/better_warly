@@ -57,29 +57,29 @@ end
 warly_foods.freshfruitcrepes.test = function(cooker, names, tags) return tags.fruit and tags.fruit >= 1 and names.butter and names.honey end
 
 -- 发光浆果
-warly_foods.glowberrymousse.prefabs = { "warly_light_greater" }
-warly_foods.glowberrymousse.oneatenfn = function(inst, eater)
-    --see wormlight.lua for original code
-    if eater.wormlight ~= nil then
-        if eater.wormlight.prefab == "warly_light_greater" then
-            eater.wormlight.components.spell.lifetime = 0
-            eater.wormlight.components.spell:ResumeSpell()
-            return
-        else
-            eater.wormlight.components.spell:OnFinish()
-        end
-    end
+-- warly_foods.glowberrymousse.prefabs = { "warly_light_greater" }
+-- warly_foods.glowberrymousse.oneatenfn = function(inst, eater)
+--     --see wormlight.lua for original code
+--     if eater.wormlight ~= nil then
+--         if eater.wormlight.prefab == "warly_light_greater" then
+--             eater.wormlight.components.spell.lifetime = 0
+--             eater.wormlight.components.spell:ResumeSpell()
+--             return
+--         else
+--             eater.wormlight.components.spell:OnFinish()
+--         end
+--     end
 
-    local light = SpawnPrefab("warly_light_greater")
-    light.components.spell:SetTarget(eater)
-    if light:IsValid() then
-        if light.components.spell.target == nil then
-            light:Remove()
-        else
-            light.components.spell:StartSpell()
-        end
-    end
-end
+--     local light = SpawnPrefab("warly_light_greater")
+--     light.components.spell:SetTarget(eater)
+--     if light:IsValid() then
+--         if light.components.spell.target == nil then
+--             light:Remove()
+--         else
+--             light.components.spell:StartSpell()
+--         end
+--     end
+-- end
 
 -- 怪物鞑靼
 warly_foods.monstertartare.oneatenfn = function(inst, eater)

@@ -5,7 +5,6 @@ TUNING.SPICEMATERIALS = {}
 TUNING.SPICEMPREFAB = {}
 
 -- 将调料从研磨器制作改成可以直接制作
--- 为什么要这么写？是为了兼容其他mod（希望吧）
 for i, recipe in pairs(AllRecipes) do
     if recipe.builder_tag == "professionalchef" then
         table.insert(TUNING.SPICEMPREFAB, recipe.name)
@@ -21,9 +20,10 @@ for i, recipe in pairs(AllRecipes) do
 end
 
 -- 打印结果
-print("SPICEMPREFAB:", table.concat(TUNING.SPICEMPREFAB, ", "))
-print("SPICEMATERIALS:", table.concat(TUNING.SPICEMATERIALS, ", "))
--- 给香料原料加一个tag
+-- print("SPICEMPREFAB:", table.concat(TUNING.SPICEMPREFAB, ", "))
+-- print("SPICEMATERIALS:", table.concat(TUNING.SPICEMATERIALS, ", "))
+
+-- 给香料原料(物品)加一个tag
 for _, prefab in pairs(TUNING.SPICEMATERIALS) do
     AddPrefabPostInit(prefab,function (inst)
         inst:AddTag("spicematerials")
