@@ -2,12 +2,10 @@
 local terrors_equis = {"eyemaskhat", "shieldofterror"}
 
 local function oneatfn(inst, food)
-    local ismonstertartare = food.prefab == "monstertartare" and 2 or 1
+    local ismonstertartare = food.prefab == "monstertartare"
     local health = math.abs(food.components.edible:GetHealth(inst)) * inst.components.eater.healthabsorption
     local hunger = math.abs(food.components.edible:GetHunger(inst)) * inst.components.eater.hungerabsorption
-    inst.components.armor:Repair((health + hunger) * ismonstertartare)
-
-    -- print("ismonstertartare", ismonstertartare)
+    inst.components.armor:Repair(ismonstertartare and 250 or (health + hunger))
 
     if not inst.inlimbo then
         inst.AnimState:PlayAnimation("eat")
